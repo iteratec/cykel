@@ -252,7 +252,7 @@ class LoginProviderViewSet(
     serializer_class = SocialAppSerializer
 
     def get_queryset(self):
-        return SocialApp.objects.filter(sites__id=get_current_site(self.request).id)
+        return  SocialApp.objects.filter(sites__id=get_current_site(self.request).id)
 
 
 def custom_exception_handler(exc, context):

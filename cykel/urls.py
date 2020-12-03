@@ -19,6 +19,9 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 from django.views.generic import RedirectView
 
+# TODO remove maybe Costum Login
+from rest_framework.authtoken.views import obtain_auth_token
+
 urlpatterns = [
     path("", RedirectView.as_view(permanent=False, url=settings.UI_URL)),
     path("admin/", admin.site.urls),
@@ -27,4 +30,6 @@ urlpatterns = [
     path("bikesharing/", include("bikesharing.urls")),
     path("gbfs/", include("gbfs.urls")),
     re_path(r"^auth/", include("allauth.urls")),
+    # TODO remove later maybe Costum Login URL
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),  
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
